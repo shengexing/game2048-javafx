@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.Rectangle?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="root"
+            fx:controller="com.timem.game2048javafx.Game2048Controller"
+            styleClass="border-pane"
+            stylesheets="/style.css">
+
+    <!-- 顶部区域：标题和分数 -->
+    <top>
+        <HBox styleClass="h-box">
+            <!-- 游戏标题 -->
+            <Label id="label2048" text="2048" />
+
+            <!-- 分数面板 -->
+            <VBox styleClass="v-box">
+                <Label styleClass="score-label" text="SCORE" />
+                <Label styleClass="score-text" fx:id="scoreText" text="0" />
+            </VBox>
+
+            <!-- 最佳分数面板 -->
+            <VBox styleClass="v-box">
+                <Label styleClass="score-label" text="BEST" />
+                <Label styleClass="score-text" fx:id="bestLabel" text="1024" />
+            </VBox>
+
+            <!-- 新游戏按钮 -->
+            <Button id="button-new-game" fx:id="newGameButton" text="New Game" onAction="#clear" />
+        </HBox>
+    </top>
+
+    <!-- 主游戏区域 -->
+    <center>
+        <VBox styleClass="v-box">
+            <!-- 游戏网格 -->
+            <GridPane id="grid-game" fx:id="gameGrid">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints percentHeight="25" />
+                    <RowConstraints percentHeight="25" />
+                    <RowConstraints percentHeight="25" />
+                    <RowConstraints percentHeight="25" />
+                </rowConstraints>
+
+                <!-- 使用占位矩形创建网格背景 -->
+                <Rectangle styleClass="rectangle" fx:id="cell00" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <Rectangle styleClass="rectangle" fx:id="cell01" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                <Rectangle styleClass="rectangle" fx:id="cell02" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+                <Rectangle styleClass="rectangle" fx:id="cell03" GridPane.rowIndex="0" GridPane.columnIndex="3" />
+
+                <Rectangle styleClass="rectangle" fx:id="cell10" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <Rectangle styleClass="rectangle" fx:id="cell11" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                <Rectangle styleClass="rectangle" fx:id="cell12" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+                <Rectangle styleClass="rectangle" fx:id="cell13" GridPane.rowIndex="1" GridPane.columnIndex="3" />
+
+                <Rectangle styleClass="rectangle" fx:id="cell20" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <Rectangle styleClass="rectangle" fx:id="cell21" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+                <Rectangle styleClass="rectangle" fx:id="cell22" GridPane.rowIndex="2" GridPane.columnIndex="2" />
+                <Rectangle styleClass="rectangle" fx:id="cell23" GridPane.rowIndex="2" GridPane.columnIndex="3" />
+
+                <Rectangle styleClass="rectangle" fx:id="cell30" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                <Rectangle styleClass="rectangle" fx:id="cell31" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+                <Rectangle styleClass="rectangle" fx:id="cell32" GridPane.rowIndex="3" GridPane.columnIndex="2" />
+                <Rectangle styleClass="rectangle" fx:id="cell33" GridPane.rowIndex="3" GridPane.columnIndex="3" />
+
+                <!-- 游戏格子（数字标签） -->
+                <Label fx:id="tile00" styleClass="tile" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <Label fx:id="tile01" styleClass="tile" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                <Label fx:id="tile02" styleClass="tile" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+                <Label fx:id="tile03" styleClass="tile" GridPane.rowIndex="0" GridPane.columnIndex="3" />
+
+                <Label fx:id="tile10" styleClass="tile" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <Label fx:id="tile11" styleClass="tile" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                <Label fx:id="tile12" styleClass="tile" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+                <Label fx:id="tile13" styleClass="tile" GridPane.rowIndex="1" GridPane.columnIndex="3" />
+
+                <Label fx:id="tile20" styleClass="tile" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <Label fx:id="tile21" styleClass="tile" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+                <Label fx:id="tile22" styleClass="tile" GridPane.rowIndex="2" GridPane.columnIndex="2" />
+                <Label fx:id="tile23" styleClass="tile" GridPane.rowIndex="2" GridPane.columnIndex="3" />
+
+                <Label fx:id="tile30" styleClass="tile" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                <Label fx:id="tile31" styleClass="tile" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+                <Label fx:id="tile32" styleClass="tile" GridPane.rowIndex="3" GridPane.columnIndex="2" />
+                <Label fx:id="tile33" styleClass="tile" GridPane.rowIndex="3" GridPane.columnIndex="3" />
+            </GridPane>
+        </VBox>
+    </center>
+
+    <!-- 底部区域：操作按钮和说明 -->
+    <right>
+        <VBox styleClass="v-box">
+            <HBox styleClass="h-box">
+                <Button styleClass="button-move" text="Up" onAction="#moveUp" />
+            </HBox>
+            <HBox styleClass="h-box">
+                <Button styleClass="button-move" text="Left" onAction="#moveLeft" />
+                <Button styleClass="button-move" text="Down" onAction="#moveDown" />
+                <Button styleClass="button-move" text="Right" onAction="#moveRight" />
+            </HBox>
+            <HBox styleClass="h-box">
+                <Button id="button-undo" text="Undo" onAction="#undo" />
+            </HBox>
+
+            <Label id="label-tip" text="Use arrow keys or buttons to move the tiles. When two tiles with the same number touch, they merge into one!" />
+
+            <Label id="label-op" text="(Keyboard: ↑ ↓ ← →)" />
+        </VBox>
+    </right>
+
+</BorderPane>

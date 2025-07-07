@@ -1,0 +1,181 @@
+/* 基础样式 */
+.root {
+    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.border-pane {
+    -fx-background-color: #bbada0;
+    -fx-padding: 20;
+}
+
+.h-box {
+    -fx-alignment: center;
+    -fx-padding: 10;
+    -fx-spacing: 20;
+}
+
+.v-box {
+    -fx-alignment: center;
+    -fx-padding: 10 20;
+    -fx-spacing: 5;
+    -fx-background-color: #bbada0;
+    -fx-background-radius: 5;
+}
+
+.score-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #eee4da;
+    -fx-font-size: 14px;
+}
+
+.score-text {
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+}
+
+.rectangle {
+    -fx-arc-width: 5;
+    -fx-arc-height: 5;
+    -fx-fill: #cdc1b4;
+    -fx-alignment: center;
+}
+
+.button {
+    -fx-font-size: 16px;
+    -fx-background-color: #8f7a66;
+    -fx-text-fill: white;
+    -fx-min-width: 100%;
+    -fx-min-height: 100%;
+}
+
+.button-move {
+    -fx-background-color: #8f7a66;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-min-width: 80;
+    -fx-padding: 10;
+    -fx-background-radius: 5;
+}
+
+#label2048 {
+    -fx-font-weight: bold;
+    -fx-font-size: 60px;
+    -fx-text-fill: #776e65;
+}
+
+#button-new-game {
+    -fx-background-color: #8f7a66;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+}
+
+#grid-game {
+    -fx-background-color: #bbada0;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+    -fx-background-radius: 5;
+}
+
+#button-undo {
+    -fx-background-color: #edc22e;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-min-width: 80;
+    -fx-padding: 10;
+    -fx-background-radius: 5;
+}
+
+#label-tip {
+    -fx-text-fill: #776e65;
+    -fx-font-size: 14px;
+    -fx-wrap-text: true;
+    -fx-max-width: 500;
+    -fx-alignment: center;
+}
+
+#label-op {
+    -fx-text-fill: #8f7a66;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 0 0 0;
+}
+
+/* 游戏格子样式 */
+.tile {
+    -fx-font-weight: bold;
+    -fx-font-size: 35px;
+    -fx-alignment: center;
+    -fx-background-radius: 5;
+    -fx-min-width: 80px;
+    -fx-min-height: 80px;
+    -fx-pref-width: 80px;
+    -fx-pref-height: 80px;
+    -fx-border-width: 1;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+}
+
+/* 不同数字的格子颜色 */
+.tile-2 {
+    -fx-background-color: #eee4da;
+    -fx-text-fill: #776e65;
+}
+
+.tile-4 {
+    -fx-background-color: #ede0c8;
+    -fx-text-fill: #776e65;
+}
+
+.tile-8 {
+    -fx-background-color: #f2b179;
+    -fx-text-fill: #f9f6f2;
+}
+
+.tile-16 {
+    -fx-background-color: #f59563;
+    -fx-text-fill: #f9f6f2;
+}
+
+.tile-32 {
+    -fx-background-color: #f67c5f;
+    -fx-text-fill: #f9f6f2;
+}
+
+.tile-64 {
+    -fx-background-color: #f65e3b;
+    -fx-text-fill: #f9f6f2;
+}
+
+.tile-128 {
+    -fx-background-color: #edcf72;
+    -fx-text-fill: #f9f6f2;
+    -fx-font-size: 30px;
+}
+
+.tile-256 {
+    -fx-background-color: #edcc61;
+    -fx-text-fill: #f9f6f2;
+    -fx-font-size: 30px;
+}
+
+.tile-512 {
+    -fx-background-color: #edc850;
+    -fx-text-fill: #f9f6f2;
+    -fx-font-size: 30px;
+}
+
+.tile-1024 {
+    -fx-background-color: #edc53f;
+    -fx-text-fill: #f9f6f2;
+    -fx-font-size: 25px;
+}
+
+.tile-2048 {
+    -fx-background-color: #edc22e;
+    -fx-text-fill: #f9f6f2;
+    -fx-font-size: 25px;
+}
