@@ -180,10 +180,13 @@ public class Game2048Controller {
     }
 
     /**
-     * 处理操作后的下一步
+     * 处理操作后的下一步，排序、合并、排序
      * @param cell 当前行或列
+     * @return 是否移动了
      */
-    private void nextStep(int[] cell) {
+    private boolean move(int[] cell) {
+        boolean isMove = false;
+
         List<Integer> cellList = new ArrayList<>();
         for (int c : cell) {
             if (c != 0) {
@@ -200,11 +203,18 @@ public class Game2048Controller {
 
         for (int i = 0; i < rowColNum; i++) {
             if (i < cellList.size()) {
+                if (cell[i] != cellList.get(i)) {
+                    isMove = true;
+                }
                 cell[i] = cellList.get(i);
             } else {
+                if (cell[i] != 0) {
+                    isMove = true;
+                }
                 cell[i] = 0;
             }
         }
+        return isMove;
     }
 
     /**
@@ -295,70 +305,82 @@ public class Game2048Controller {
      */
     @FXML
     public void moveUp(ActionEvent event) {
+        boolean isMove = false;
         for (int j = 0; j < rowColNum; j++) {
             int[] currentCell = new int[rowColNum];
             for (int i = 0; i < rowColNum; i++) {
                 currentCell[i] = this.cells[i][j];
             }
-            nextStep(currentCell);
+            isMove |= move(currentCell);
             for (int i = 0; i < rowColNum; i++) {
                 this.cells[i][j] = currentCell[i];
                 setTile(i, j, this.cells[i][j]);
             }
         }
         // 生成下一个随机数
-        nextNum();
+        if (isMove) {
+            nextNum();
+        }
     }
 
     @FXML
     public void moveDown(ActionEvent event) {
+        boolean isMove = false;
         for (int j = 0; j < rowColNum; j++) {
             int[] currentCell = new int[rowColNum];
             for (int i = rowColNum; i > 0; i--) {
                 currentCell[rowColNum - i] = this.cells[i - 1][j];
             }
-            nextStep(currentCell);
+            isMove |= move(currentCell);
             for (int i = rowColNum; i > 0; i--) {
                 this.cells[i - 1][j] = currentCell[rowColNum - i];
                 setTile(i - 1, j, this.cells[i - 1][j]);
             }
         }
         // 生成下一个随机数
-        nextNum();
+        if (isMove) {
+            nextNum();
+        }
     }
 
     @FXML
     public void moveLeft(ActionEvent event) {
+        boolean isMove = false;
         for (int i = 0; i < rowColNum; i++) {
             int[] currentCell = new int[rowColNum];
             for (int j = 0; j < rowColNum; j++) {
                 currentCell[j] = this.cells[i][j];
             }
-            nextStep(currentCell);
+            isMove |= move(currentCell);
             for (int j = 0; j < rowColNum; j++) {
                 this.cells[i][j] = currentCell[j];
                 setTile(i, j, this.cells[i][j]);
             }
         }
         // 生成下一个随机数
-        nextNum();
+        if (isMove) {
+            nextNum();
+        }
     }
 
     @FXML
     public void moveRight(ActionEvent event) {
+        boolean isMove = false;
         for (int i = 0; i < rowColNum; i++) {
             int[] currentCell = new int[rowColNum];
             for (int j = rowColNum; j > 0; j--) {
                 currentCell[rowColNum - j] = this.cells[i][j - 1];
             }
-            nextStep(currentCell);
+            isMove |= move(currentCell);
             for (int j = rowColNum; j > 0; j--) {
                 this.cells[i][j - 1] = currentCell[rowColNum - j];
                 setTile(i, j - 1, this.cells[i][j - 1]);
             }
         }
         // 生成下一个随机数
-        nextNum();
+        if (isMove) {
+            nextNum();
+        }
     }
 
 }
