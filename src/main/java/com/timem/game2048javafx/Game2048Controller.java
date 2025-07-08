@@ -135,6 +135,19 @@ public class Game2048Controller {
     }
 
     /**
+     * 判断表格是否满了
+     * @return 是否满了
+     */
+    private boolean isFull() {
+        for (int i = 0; i < rowColNum * rowColNum; i++) {
+            if (this.cells[i / rowColNum][i % rowColNum] == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * 判断当前游戏是否已经结束
      * @return 游戏是否结束
      */
@@ -198,11 +211,27 @@ public class Game2048Controller {
      * 生成下一个数字
      */
     private void nextNum() {
-        Random random = new Random();
-        int index = random.nextInt(rowColNum * rowColNum);
-        while (this.cells[index / rowColNum][index % rowColNum] != 0) {
-            index = random.nextInt(rowColNum * rowColNum);
+        // 表格满了，不再生成数字
+        if (isFull()) {
+            return;
         }
+
+        // 生成一个 0 - 15 的随机数
+        Random random = new Random();
+        int ran = random.nextInt(rowColNum * rowColNum);
+        // index 表示表格中的空白位置，从左到右，从上到下，数到第 ran 个空白位置（只数空白位置，数到结束后从头开始）
+        int index = -1;
+        while (ran >= 0) {
+            index++;
+            index %= rowColNum * rowColNum;
+            while (this.cells[index / rowColNum][index % rowColNum] != 0) {
+                index++;
+                index %= rowColNum * rowColNum;
+            }
+            ran --;
+        }
+
+        // 在 index 位置生成随机数
         setTile(index / rowColNum, index % rowColNum, 2);
     }
 
