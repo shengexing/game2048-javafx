@@ -135,6 +135,38 @@ public class Game2048Controller {
     }
 
     /**
+     * 判断当前游戏是否已经结束
+     * @return 游戏是否结束
+     */
+    private boolean isOver() {
+        // 判断游戏是否结束，两个条件：1.表格已满，2.相邻元素各不相同
+        for (int i = 0; i < rowColNum * rowColNum; i++) {
+            // 1. 判断表格是否已满
+            if (this.cells[i / rowColNum][i % rowColNum] == 0) {
+                return false;
+            }
+            // 2. 判断相邻元素是否相同
+            // 与上面的元素是否相同
+            if (i >= rowColNum && this.cells[i / rowColNum][i % rowColNum] == this.cells[(i - rowColNum) / rowColNum][(i - rowColNum) % rowColNum]) {
+                return false;
+            }
+            // 与下面的元素是否相同
+            if (i < rowColNum * (rowColNum - 1) && this.cells[i / rowColNum][i % rowColNum] == this.cells[(i + rowColNum) / rowColNum][(i + rowColNum) % rowColNum]) {
+                return false;
+            }
+            // 与左面的元素是否相同
+            if (i % rowColNum != 0 && this.cells[i / rowColNum][i % rowColNum] == this.cells[(i - 1) / rowColNum][(i - 1) % rowColNum]) {
+                return false;
+            }
+            // 与面的元素是否相同
+            if ((i + 1) % rowColNum != 0 && this.cells[i / rowColNum][i % rowColNum] == this.cells[(i + 1) / rowColNum][(i + 1) % rowColNum]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * 处理操作后的下一步
      * @param cell 当前行或列
      */
